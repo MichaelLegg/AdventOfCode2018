@@ -17,12 +17,8 @@ console.log(chalk.green('Running day'), chalk.yellow(arg) + '.')
 
 const solution = require(path + '/solution.js')
 
-const input = fs.readFileSync('Calendar/' + arg + '/input.txt').toString()
-
 console.log(chalk.white.bold.underline('\n______Part 1______'))
-console.log(chalk.cyan('Input  is: ' + input))
-console.log(chalk.magenta('Solution is: ' + solution.solve(input, 1)))
+console.log(chalk.magenta('Solution is: \n' + chalk.cyan(solution.solve(1, path))))
 
 console.log(chalk.white.bold.underline('\n______Part 2______'))
-console.log(chalk.cyan('Input  is: ' + input))
-console.log(chalk.magenta('Solution is: ' + solution.solve(input, 2)))
+console.log(chalk.magenta('Solution is: \n' + chalk.cyan(solution.solve(2, path))))
