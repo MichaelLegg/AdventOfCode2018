@@ -11,13 +11,16 @@ function solve (part, path) {
 function p1 (input) {
   let twoTotal = 0
   let threeTotal = 0
-  for (var i = 0; i < input.length; i++) { // loop over each input line
+  // loop over each input line
+  for (var i = 0; i < input.length; i++) {
     let twoFound = false
     let threeFound = false
     let splitLine = input[i].split('')
-    for (var x = 0; x < splitLine.length; x++) { // loop over each character in the line we're looking at
+    // loop over each character in the line we're looking at
+    for (var x = 0; x < splitLine.length; x++) {
       if (threeFound && twoFound) { break }
-      let num = splitLine.reduce((total, current) => total + (splitLine[x] === current ? 1 : 0), 0) //  check how many times the current character exists in the list
+      //  check how many times the current character exists in the list
+      let num = splitLine.reduce((total, current) => total + (splitLine[x] === current ? 1 : 0), 0)
       if (num === 2 && !twoFound) {
         twoTotal++
         twoFound = true
@@ -31,7 +34,37 @@ function p1 (input) {
 }
 
 function p2 (input) {
+  // for each line in the input file
   for (var i = 0; i < input.length; i++) {
     let splitLine = input[i].split('')
+    // loop over other lines
+    for (var x = 0; x < input.length; x++) {
+      // if we're just comparing a line to itself then skip
+      if (x === i) {
+        continue
+      }
+      let splitLine2 = input[x].split('')
+      let ans = compareLines(splitLine, splitLine2)
+      if (ans !== 'owo') {
+        return ans
+      }
+    }
   }
+}
+
+function compareLines (line1, line2) {
+  let counter = 0
+  // for each letter in the current line
+  for (var a = 0; a < line1.length; a++) {
+    // compare to each letter in the other line
+    // if the letters aren't equal then increment our counter
+    if (line1[a] !== line2[a]) {
+      counter++
+      if (counter > 1) {
+        return 'owo'
+      }
+    }
+  }
+  line1.splice(a)
+  return line1
 }
